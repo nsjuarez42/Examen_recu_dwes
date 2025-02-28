@@ -58,7 +58,6 @@ class ModelUser():
         if not user:
             return None
         
-        
         cursor.execute("UPDATE users SET views=? WHERE username=?",(user.visits +1,user.username))
 
 

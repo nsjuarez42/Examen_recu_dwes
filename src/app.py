@@ -47,7 +47,7 @@ def login():
             return render_template("login.html",form=LoginForm())
         
         login_user(user_found)
-       # ModelUser.add_view(mysql.get_db(),user_found.username)
+        #ModelUser.add_view(mysql.get_db(),user_found.username)
         ##add visit
 
         return redirect(url_for("user"))
@@ -82,8 +82,6 @@ def logout():
     logout_user()
     return redirect(url_for("home"))
 
-
-
 @app.route("/user",methods=["GET"])
 @login_required
 def user():
@@ -107,10 +105,6 @@ def store():
             
        
         return render_template("checkout.html",products=to_buy,total_amount=sum([p['amount'] for p in to_buy]),total_price=sum([p['price'] for p in to_buy]))
-        
-        
-                
-
         
     elif request.method == "GET":
         return render_template("store.html",products=products)
