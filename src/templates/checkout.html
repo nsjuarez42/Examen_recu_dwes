@@ -1,0 +1,23 @@
+{% extends './base.html' %}
+
+{% block title %}Checkout {% endblock %}
+
+{% block body %}
+ {% if products %}
+
+ {% for product in products%}
+ <div>
+    <span>{{product.name}}</span>
+    <span>{{product.amount}}</span>
+    <span>{{product.price}}</span>
+
+ </div>
+ {% endfor %}
+ 
+
+    
+ {% else %}
+ <h1>No products in shopping cart</h1>
+
+ {% endif %}
+{% endblock %}

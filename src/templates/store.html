@@ -1,0 +1,26 @@
+{% extends './base.html' %}
+
+{% block title %} Store {% endblock %}
+
+{% block body %}
+<h1>All products</h1>
+  {% if products %}
+  <form action="/store" method="post">
+  {% for product in products %}
+
+     <div>
+        <span>{{product.name}}</span>
+        <span>{{product.amount}}</span>
+        <span>{{product.price}}</span>
+        <input type="number" name='{{product.id}}' min="0" max="{{product.amount}}">
+     </div>
+  {% endfor %}
+  
+  {% else %}
+  <div>
+    <h1>No products avaiable</h1>
+  </div>
+  {% endif %}
+  <input type="submit" value="Comprar">
+  </form>
+{% endblock %}

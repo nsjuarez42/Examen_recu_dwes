@@ -1,0 +1,7 @@
+class Development():
+    SECRET_KEY="968c3435395280e3960e7ab0ea189a83"
+    MYSQL_DATABASE_HOST='localhost'
+    MYSQL_DATABASE_PORT=3306
+    MYSQL_DATABASE_USER="root"
+    MYSQL_DATABASE_PASSWORD="root"
+    MYSQL_DATABASE_DB="products_dwes"

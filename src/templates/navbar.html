@@ -1,0 +1,12 @@
+<nav>
+<a>Home</a>
+{% if current_user.is_authenticated %}
+<a href="">Profile</a>
+<a href="logout">Logout</a>
+
+{% else %}
+<a href="/login">Login</a>
+<a href="/register">Register</a>
+{% endif %}
+    
+</nav>

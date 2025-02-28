@@ -1,0 +1,43 @@
+{% extends './base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+
+{% block body%}
+
+<form class="form-signin" action="/login" method="POST">
+  <img
+    class="mb-4"
+    src="{{ url_for('static', filename='img/logo.svg') }}"
+    alt=""
+    width="300"
+    height="150"
+  />
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  {% for msg in messages %}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ msg }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+  <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+   {{ form.hidden_tag() }}
+  <div class="form-floating">
+    {{ form.username(class="form-control") }}
+    {{ form.username.label }}
+  </div>
+  <div class="form-floating mt-2">
+   {{ form.password(class="form-control")}}
+   {{ form.password.label }}
+  </div>
+  {{ form.submit(class="w-100 btn btn-lg btn-primary" )}}
+</form>
+
+{% endblock %}
