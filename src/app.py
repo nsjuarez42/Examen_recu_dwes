@@ -7,6 +7,7 @@ from db.ModelUser import ModelUser
 from db.ModelProducts import ModelProducts
 from entities.User import User
 
+
 from flask_login import LoginManager,login_user,login_required,current_user,logout_user
 
 
@@ -46,6 +47,9 @@ def login():
             return render_template("login.html",form=LoginForm())
         
         login_user(user_found)
+       # ModelUser.add_view(mysql.get_db(),user_found.username)
+        ##add visit
+
         return redirect(url_for("user"))
     return render_template("login.html",form=LoginForm())
 
@@ -97,12 +101,12 @@ def store():
         to_buy = []
         for c in cart:
             product = [p for p in products if p.id == c["id"]][0]
-
             to_buy.append({"name":product.name,
                            "amount":c['amount'],
                            "price":c['amount']*product.price})
-        #products = [{"name":[p for p in products if p.id == c["id"]],"amount":,"price":} for c in cart]
-        return render_template("checkout.html",products=to_buy)
+            
+       
+        return render_template("checkout.html",products=to_buy,total_amount=sum([p['amount'] for p in to_buy]),total_price=sum([p['price'] for p in to_buy]))
         
         
                 

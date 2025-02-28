@@ -41,6 +41,30 @@ class ModelUser():
             raise Exception(e)
 
 
+    @classmethod 
+    def update_user(cls,db,username,fullname,password,views):
+
+        cursor = db.cursor()
+
+        cursor.execute("UPDATE users SET WHERE username")
+
+    @classmethod
+    def add_view(cls,db,username):
+
+        cursor = db.cursor()
+
+        user = cls.get_by_username(db,username)
+
+        if not user:
+            return None
+        
+        
+        cursor.execute("UPDATE users SET views=? WHERE username=?",(user.visits +1,user.username))
+
+
+       
+
+
 
     @classmethod
     def get_by_id(cls,db,id):
@@ -57,7 +81,7 @@ class ModelUser():
                 username = row[1]
                 fullname = row[2]
 
-                logged_user = User(id, username, None, fullname)
+                logged_user = User(id, username, None, fullname,0)
 
                 return logged_user
             else:
@@ -72,7 +96,7 @@ class ModelUser():
 
         try:
             cursor = db.cursor()
-            sql = 'SELECT id, username, fullname, password FROM users WHERE username = %s'
+            sql = 'SELECT id, username, fullname, password,views FROM users WHERE username = %s'
 
             cursor.execute(sql, (username,))
             row = cursor.fetchone()
@@ -83,8 +107,9 @@ class ModelUser():
                 username = row[1]
                 fullname = row[2]
                 password = row[3]
+                visits = row[4]
 
-                return User(id,username,password,fullname)
+                return User(id,username,password,fullname,visits)
             
             else:
                 return None
